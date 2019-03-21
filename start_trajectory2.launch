@@ -1,0 +1,16 @@
+<launch>
+  <param name="/use_sim_time" value="true" />
+  <arg name="trj" default="1" /> 
+
+  <node pkg="rosservice" type="rosservice" name="finish_trajectory" args="call /finish_trajectory $(arg trj)"/> 
+
+  <node name="cartographer_start_trajectory" pkg="cartographer_ros" type="cartographer_start_trajectory" 
+      args= "
+      -configuration_directory $(find cartographer_ros)/configuration_files 
+      -configuration_basename my_robot_localization.lua 
+      -initial_pose {to_trajectory_id=0,relative_pose={translation={100.,100.,0.},rotation={0.,0.,0.,}}}" 
+      output="screen">
+      <remap from="/points2" to="/middle/rslidar_points" />
+  </node>
+
+</launch>
