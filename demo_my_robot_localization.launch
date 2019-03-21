@@ -19,8 +19,6 @@
 
   <arg name="start_trajectory_with_default_topics" default="true" />
 
-  <include file="$(find geodetic_utils)/launch/geodetic_utils.launch" />
-
   <param name="robot_description"
     textfile="$(find cartographer_ros)/urdf/my_robot.urdf" />
 
